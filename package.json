@@ -13,10 +13,15 @@
     "type": "git",
     "url": "git+https://github.com/sonya0504/project_map.git"
   },
-  "author": "Sonia Jarczak <jarczak.sonia@gmail.com",
+  "author": "Sonia Jarczak <jarczak.sonia@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sonya0504/project_map/issues"
   },
-  "homepage": "https://github.com/sonya0504/project_map#readme"
+  "homepage": "https://github.com/sonya0504/project_map#readme",
+  "devDependencies": {
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
+  }
 }
