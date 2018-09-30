@@ -19,13 +19,19 @@ module.exports = {
                     {
                         loader: "css-loader",
                         options: {
-                            modules: true
+                            modules: true,
+                            localIdentName: "[local]_[hash]"
                         }
                     },
                     {
                         loader: "sass-loader"
                     }
+
                 ]
+            },
+            {
+                test: /\.(jpg|png|gif)$/, //następny znak ma być traktowany jako dosłownie
+                use: ["file-loader"]
             }
         ]
     },
