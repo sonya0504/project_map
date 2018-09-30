@@ -1,0 +1,22 @@
+{
+  "name": "project_map",
+  "version": "0.0.1",
+  "description": "Projekt adres: https://sonya0504.github.io/project_map/",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonya0504/project_map.git"
+  },
+  "author": "Sonia Jarczak <jarczak.sonia@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonya0504/project_map/issues"
+  },
+  "homepage": "https://github.com/sonya0504/project_map#readme"
+}
