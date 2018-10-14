@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  width: 100vw;
+}
+
+.appContainer {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid red;
+}
+
+.top_bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1000px;
+  height: 70px;
+  background-color: lightgrey;
+  color: #fff
+}
+
+.board {
+  display: flex;
+}
+
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+$cellSize: 32px;
+
+.cell {
+  width: $cellSize;
+  height: $cellSize;
+  margin: 2px;
+  background-color: lightgrey;
+  padding: 3px 3px;
+  border: 3px solid;
+  border-color:  #fff  #7d7d7d  #7d7d7d #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
+}
+
+.cell:active {
+  border-color: #7d7d7d #fff #fff #7d7d7d;
+}
