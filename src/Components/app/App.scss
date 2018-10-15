@@ -38,17 +38,34 @@ $cellSize: 32px;
 .cell {
   width: $cellSize;
   height: $cellSize;
-  margin: 2px;
+  margin: 0;
   background-color: lightgrey;
-  padding: 3px 3px;
+  padding: 0;
   border: 3px solid;
-  border-color:  #fff  #7d7d7d  #7d7d7d #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 900;
 }
 
-.cell:active {
-  border-color: #7d7d7d #fff #fff #7d7d7d;
+.open {
+  border: 1px solid #7d7d7d;
+  width: 36px;
+  height: 36px;
 }
+
+.closed {
+  border-color:  #fff  #7d7d7d  #7d7d7d #fff;
+}
+
+.interactive {
+  .closed:active {
+    border-color: #7d7d7d #fff #fff #7d7d7d;
+  }
+}
+
+.nonInteractive {
+
+}
+
+
