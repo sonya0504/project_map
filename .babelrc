@@ -5,7 +5,10 @@
       "@babel/preset-env",
       {
         "targets": "last 2 versions"
-      }
+      }//,
+//      {
+//        "plugins": ["transform-class-properties"]
+//      }
     ]
   ]
 }

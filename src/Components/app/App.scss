@@ -68,4 +68,44 @@ $cellSize: 32px;
 
 }
 
+.flag {
+  .mast {
+
+    $size: 12px;
+
+    display: block;
+    width: $size/4;
+    height: $size;
+    background: black;
+    position: relative;
+
+    &::before,
+    &::after {
+      display: block;
+      position: absolute;
+      width: $size;
+      content: '';
+      height: $size/4;
+      background: black;
+      bottom: -$size/4;
+      left: -$size/4 - $size/8;
+    }
+
+    &::after {
+      width: $size + $size/2;
+      bottom: -$size/2;
+      left: -$size/4 - $size/4 - $size/8;
+    }
+
+    &__flag {
+      display: block;
+      border: $size solid red;
+      border-color:  transparent red transparent transparent ;
+      border-width: $size/2 + $size/8 $size;
+      position: absolute;
+      top: -$size + $size/8;
+      left: -$size - $size/2 - $size/4;
+    }
+  }
+}
 

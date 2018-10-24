@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './App.scss';
-
-import {CellStateEnum, BoardStateEnum} from "minesweeper";
+import {CellStateEnum, BoardStateEnum, CellFlagEnum} from "minesweeper";
 
 const colorMap = {
     0: 'lightgrey',
@@ -25,7 +24,7 @@ const stateToClassName = {
 class Cell extends React.Component {
 
     render() {
-        let {cell, onOpen} = this.props;
+        let {cell, onOpen, onFlag} = this.props;
         let fontColor = {color: colorMap[cell.numAdjacentMines]};
 
         const className = [
@@ -34,7 +33,8 @@ class Cell extends React.Component {
         ].join(" ");
 
             return (
-                <div className={className} style={fontColor} onClick={() => this.props.onOpen(cell)}>
+                <div className={className} style={fontColor} onClick={() => onOpen(cell)}
+                     onContextMenu={(e) => {e.preventDefault(); onFlag(cell)}}>
                     { cell.state === CellStateEnum.OPEN && (cell.isMine ? "*" : cell.numAdjacentMines)}
                     { cell.state === CellStateEnum.CLOSED && this.props.isLost && cell.isMine && "*"}
                 </div>
@@ -42,11 +42,11 @@ class Cell extends React.Component {
     }
 }
 
-const Row = ({cells, onCellOpened, isLost }) => (
+const Row = ({cells, onCellOpened, isLost, onCellFlagged }) => (
 
     <div className={styles.row}>
         {cells.map(cell =>
-            <Cell isLost={ isLost } key={`cell_${cell.x}_${cell.y}`} cell={cell} onOpen={onCellOpened}/>)}
+            <Cell isLost={ isLost } key={`cell_${cell.x}_${cell.y}`} cell={cell} onOpen={onCellOpened} onFlag={onCellFlagged}/>)}
     </div>
 );
 
@@ -70,16 +70,29 @@ class Board extends React.Component {
         });
     }
 
+    onCellFlagged({x, y}) {
+        if (this.props.board.state() === BoardStateEnum.IN_PROGRESS || this.props.board.state() === BoardStateEnum.PRISTINE) {
+            this.props.board.cycleCellFlag(x, y);
+        }
+
+        this.setState({
+            grid: this.props.board.grid(),
+            boardState: this.props.board.state()
+        })
+    }
+
     render() {
         const className = [
             styles.board,
             stateToClassName[this.props.board.state()]
         ].join(" ");
 
-            return <div className={ className }>
-                {this.state.grid.map((cells, idx) => <Row isLost={ this.state.boardState === BoardStateEnum.LOST } key={`row_${idx}`} cells={cells}
-                                                          onCellOpened={cell => this.onCellOpened(cell)} />)}
-            </div>
+        return <div className={ className }>
+            {this.state.grid.map((cells, idx) => <Row isLost={ this.state.boardState === BoardStateEnum.LOST } key={`row_${idx}`} cells={cells}
+                                                      onCellOpened={cell => this.onCellOpened(cell)}
+                                                      onCellFlagged={cell => this.onCellFlagged(cell)}
+            />)}
+        </div>
     }
 }
 

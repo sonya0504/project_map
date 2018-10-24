@@ -8,10 +8,12 @@ const CellStateEnum = minesweeper.CellStateEnum;
 
 // Określa czy komórka została oznaczona flagą czy znakiem zapytania
 // może być:
-// minesweeper.CellFlagEnum.NONE
-// minesweeper.CellFlagEnum.EXCLAMATION
-// minesweeper.CellFlagEnum.QUESTION
+
 const CellFlagEnum = minesweeper.CellFlagEnum;
+// minesweeper.CellFlagEnum.NONE;
+// minesweeper.CellFlagEnum.EXCLAMATION;
+// minesweeper.CellFlagEnum.QUESTION;
+
 
 const Board = minesweeper.Board;
 const Cell = minesweeper.Cell;
