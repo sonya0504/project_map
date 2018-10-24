@@ -1,7 +1,6 @@
-import React,{PureComponent} from 'react';
+import React from 'react';
 import styles from './App.scss';
-import BtnStart from './BtnStart';
-import Cell from "./Cell";
+import {BoardStateEnum} from "minesweeper";
 
 class Logo extends React.Component {
     render () {
@@ -36,7 +35,7 @@ function MenuItems({visible, hideClick}) {
     )
 }
 
-class Menu extends PureComponent {
+class Menu extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -44,11 +43,11 @@ class Menu extends PureComponent {
         }
     }
 
-    onMainMenuClick () {
+    onMainMenuClick = () => {
         this.setState({ itemsVisible: true})
     };
 
-    onHideClick () {
+    onHideClick = () => {
         this.setState({ itemsVisible: false})
     };
 
@@ -79,7 +78,7 @@ class MinesCount extends React.Component {
 
     render () {
         return (
-            <span>licznik bomb</span>
+            <span>10</span>
         )
     }
 }
@@ -101,17 +100,21 @@ class Clock extends React.Component {
         }
     }
 
-    componentDidMount() {
-        this.timeout = setTimeout(() => {
-            this.setState({
-                seconds: this.state.seconds + 1
-            })
-        }, 1000)
-    }
+    componentDidMount= () => {
+        if (BoardStateEnum === BoardStateEnum.LOST) {
+            clearTimeout(this.intervalId);
+        } else {
+            this.intervalId = setInterval(() => {
+                this.setState({
+                    seconds: this.state.seconds + 1
+                })
+            }, 1000)
+        }
+    };
 
-    componentWillUnmount() {
-        clearTimeout(this.timeout);
-    }
+    componentWillUnmount = () => {
+            clearTimeout(this.intervalId);
+    };
 
     render () {
         return (
@@ -147,7 +150,7 @@ class TopBar extends React.Component {
     render() {
         return (
             <div id='top_bar' style={styles}>
-                <TopBoarder/>
+              <TopBoarder/>
             </div>
         )
     }
