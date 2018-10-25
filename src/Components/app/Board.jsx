@@ -87,11 +87,13 @@ class Board extends React.Component {
             stateToClassName[this.props.board.state()]
         ].join(" ");
 
-        return <div className={ className }>
-            {this.state.grid.map((cells, idx) => <Row isLost={ this.state.boardState === BoardStateEnum.LOST } key={`row_${idx}`} cells={cells}
-                                                      onCellOpened={cell => this.onCellOpened(cell)}
-                                                      onCellFlagged={cell => this.onCellFlagged(cell)}
-            />)}
+        return <div style={styles}>
+            <div className={ className }>
+                {this.state.grid.map((cells, idx) => <Row isLost={ this.state.boardState === BoardStateEnum.LOST } key={`row_${idx}`} cells={cells}
+                                                          onCellOpened={cell => this.onCellOpened(cell)}
+                                                          onCellFlagged={cell => this.onCellFlagged(cell)}
+                />)}
+            </div>
         </div>
     }
 }

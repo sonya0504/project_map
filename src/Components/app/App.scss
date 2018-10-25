@@ -4,9 +4,10 @@ body {
 }
 
 .appContainer {
-  width: 80%;
+  width: 36.2%;
   margin: 0 auto;
   border: 1px solid red;
+  background-color: lightgrey;
 }
 
 .top_bar {
@@ -16,11 +17,96 @@ body {
   width: 1000px;
   height: 70px;
   background-color: lightgrey;
-  color: #fff
+  color: #fff;
+}
+
+header {
+  height: 30px;
+  border: 1px solid red;
+  background-color: #000080;
+  background-image: linear-gradient(to right, #000080, #A1CAF0);
+  border-top: 5px solid lightgrey;
+  border-left: 5px solid lightgrey;
+  border-right: 5px solid lightgrey;
+  position: relative;
+
+  img {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    padding: 3px;
+    margin: 0;
+  }
+
+  span {
+    position: absolute;
+    font-weight: 900;
+    line-height: 25px;
+    letter-spacing: 1px;
+    color: white;
+    padding: 3px;
+    margin: 0;
+    top: 0;
+    left: 30px;
+  }
+
+  menu {
+    position: relative;
+    top: 20px;
+    left: 5px;
+    padding-left: 0;
+    list-style: none;
+    background-color: lightgrey;
+
+    div {
+      position: absolute;
+      width: 40px;
+      padding-left: 0;
+      padding-right: 2px;
+      left: 5px;
+    }
+
+    div::first-letter {
+        text-decoration: underline;
+      }
+
+    div:hover {
+      background-color: #2367C5;
+      color: white;
+    }
+  }
+}
+
+section {
+  position: relative;
+  top: 15px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+#minesCount {
+
+}
+
+#btnEmoticon {
+
+}
+
+#clock {
+
 }
 
 .board {
   display: flex;
+  padding: 0;
+  border: 5px solid;
+  border-color: #7d7d7d #fff #fff #7d7d7d;
+
+  .divPadding {
+    padding: 5px;
+    border: 5px solid;
+    border-color: #fff #7d7d7d #7d7d7d #fff;
+  }
 }
 
 

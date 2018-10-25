@@ -4,15 +4,17 @@ import {BoardStateEnum} from "minesweeper";
 
 class Logo extends React.Component {
     render () {
-        return <img src='../../img/mine.jpeg'/>
+        return <img src='./img/mine.jpeg'/>
     }
 }
 
 function MainMenu (props) {
         return props.visible && (
-            <div onClick={props.menuClick}>
-                Game
-            </div>
+            <ul>
+                <div onClick={props.menuClick}>
+                    Game
+                </div>
+            </ul>
         )
 }
 
@@ -22,7 +24,7 @@ function MenuItems({visible, hideClick}) {
     };
 
     return visible && (
-        <div>
+        <div className={'hidden'}>
             <ul>
                 <li>New</li>
                 <li>Beginner</li>
@@ -67,7 +69,7 @@ class Header extends React.Component {
         return (
             <header>
                 <Logo />
-                <h1>Minesweeper</h1>
+                <span>Minesweeper</span>
                 <Menu/>
             </header>
         )
@@ -78,7 +80,7 @@ class MinesCount extends React.Component {
 
     render () {
         return (
-            <span>10</span>
+            <span id='minesCount'>10</span>
         )
     }
 }
@@ -86,7 +88,7 @@ class MinesCount extends React.Component {
 class Emoticon extends React.Component {
     render () {
         return (
-            <button><img src='../../img/emoticons.png'></img></button>
+            <button id='btnEmoticon'><img src='./img/emoticons.png'></img></button>
         )
     }
 }
@@ -118,7 +120,7 @@ class Clock extends React.Component {
 
     render () {
         return (
-            <span>{this.state.seconds}</span>
+            <span id='clock'>{this.state.seconds}</span>
         )
     }
 }

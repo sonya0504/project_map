@@ -30,7 +30,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(jpg|png|gif)$/, //następny znak ma być traktowany jako dosłownie
+                test: /\.(jpg|png|gif|jpeg)$/, //następny znak ma być traktowany jako dosłownie
                 use: ["file-loader"]
             }
         ]
