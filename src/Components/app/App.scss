@@ -1,3 +1,5 @@
+$cellSize: 32px;
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +8,7 @@
 
 @font-face {
   font-family: 'digital-7regular' ;
-  src: local('digital-7regular'),url('./webfontkit-20181027-095832/digital-7-webfont.woff2') format('woff2'),
+  src: local('digital-7regular'), url('./webfontkit-20181027-095832/digital-7-webfont.woff2') format('woff2'),
        url('./webfontkit-20181027-095832/digital-7-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
@@ -27,7 +29,7 @@ body {
 .top_bar {
   background-color: lightgrey;
   color: #fff;
-
+  // margin-bottom: 10px solid white;
 }
 
 // niebieski pasek
@@ -40,7 +42,6 @@ header {
   border: none;
 
   img {
-    // position: absolute;
     height: 25px;
     width: 25px;
   }
@@ -61,7 +62,7 @@ header {
   color: black;
   display: inline-block;
   height: 25px;
-  margin: 0;
+  margin-bottom: 10px solid white;
   padding: 3px;
 }
 
@@ -87,6 +88,10 @@ header {
 .help:hover {
   background-color: #2367C5;
   color: white;
+}
+
+.menu {
+  margin-bottom: 10px solid white;
 }
 
 .menuItem {
@@ -117,7 +122,7 @@ header {
 
 .back {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   background-color: lightgrey;
 }
@@ -128,8 +133,7 @@ section {
   display: flex;
   justify-content: space-around;
   padding: 10px;
-  margin: 0 auto;
-  margin-top: 35px; 
+  margin: 0 auto; 
   background-color: lightgrey;
   border: 5px solid;
   border-color: #7d7d7d #fff #fff #7d7d7d;
@@ -138,51 +142,50 @@ section {
 .digital {
   background-color: black;
   color: red;
-  line-height: 30px;
-  width: 36px;
+  width: 40px;
   height: 36px;
   text-align: center;
   font-family: 'digital-7regular';
   font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 
 .btnEmoticon {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background-image: url("./img/emoticons.png");
   background-repeat: no-repeat;
-  background-size: 200%;
+  background-size: 210%;
 
   .newGame {
-    background-position: 1px 0px;
+    background-position: 0px 0px;
   }
 
   .ups {
-    background-position: -22px 0px;
+    background-position: -30px 0px;
   }
 
   .lost {
-    background-position: -22px -20px;
+    background-position: -30px -26px;
   }
 
   .won {
-    background-position: 1px -20px;
+    background-position: 1px -26px;
   }
 }
 
+// plansza gry
+
 .board {
-  // position: absolute;
   top: 200px;
   display: flex;
   padding: 0;
+  margin-top: 10px;
   border: 5px solid;
+  margin-bottom: 10px;
   border-color: #7d7d7d #fff #fff #7d7d7d;
-
-  .divPadding {
-    padding: 5px;
-    border: 5px solid;
-    border-color: #fff #7d7d7d #7d7d7d #fff;
-  }
 }
 
 .row {
@@ -194,8 +197,10 @@ section {
   flex-wrap: wrap;
 }
 
-$cellSize: 32px;
-
+img {
+    width: $cellSize;
+    height: $cellSize;
+  }
 .cell {
   width: $cellSize;
   height: $cellSize;
@@ -226,47 +231,4 @@ $cellSize: 32px;
 }
 
 .nonInteractive {
-
 }
-
-.flag {
-  .mast {
-
-    $size: 12px;
-
-    display: block;
-    width: $size/4;
-    height: $size;
-    background: black;
-    position: relative;
-
-    &::before,
-    &::after {
-      display: block;
-      position: absolute;
-      width: $size;
-      content: '';
-      height: $size/4;
-      background: black;
-      bottom: -$size/4;
-      left: -$size/4 - $size/8;
-    }
-
-    &::after {
-      width: $size + $size/2;
-      bottom: -$size/2;
-      left: -$size/4 - $size/4 - $size/8;
-    }
-
-    &__flag {
-      display: block;
-      border: $size solid red;
-      border-color:  transparent red transparent transparent ;
-      border-width: $size/2 + $size/8 $size;
-      position: absolute;
-      top: -$size + $size/8;
-      left: -$size - $size/2 - $size/4;
-    }
-  }
-}
-

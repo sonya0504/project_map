@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './App.scss';
-import {BoardStateEnum} from "minesweeper";
 import mineSrc from "./img/mine.jpeg";
 import flagSrc from "./img/flag.png";
 import mineExplodeSrc from "./img/mineExplode.png";
+import App from "./App";
+import {CellStateEnum, BoardStateEnum, CellFlagEnum, /*cell.isMine*/} from "minesweeper";
 
 // niebieski pasek
 class Logo extends React.Component {
@@ -22,15 +23,22 @@ class MainMenu extends React.Component {
         };
     }
 
-     menuClick = () => {
-        this.setState({
-            clicked: !this.state.clicked
-        });
-    };
+    //  menuClick = () => {
+    //     this.setState({
+    //         clicked: !this.state.clicked
+    //     });
+    // };
+
+    // showMines = () => {
+    //     if (cell.isMine) {
+    //             return (
+    //             <div className={ className }><img src={ mineSrc }/></div>
+    //             )
+    //         }
+    //     }
+    
 
     render () {
-
-        console.log(styles);
 
         return <div className={ styles.menu }>
                     { this.state.clicked && <ul className={styles.menuItem} >
@@ -40,8 +48,8 @@ class MainMenu extends React.Component {
                         <li>Expert</li>
                         <li>Custom...</li>
                     </ul> }
-                    <div className={styles.gameBtn} onClick={this.menuClick} >Game</div>
-                    <div className={styles.help}>Help</div>
+                    <div className={ styles.gameBtn } onClick={ this.menuClick } >Game</div>
+                    <div className={ styles.help } onClick={ this.showMines }>Help</div>
                 </div>;
 }        
 }
@@ -66,9 +74,14 @@ class MinesCount extends React.Component {
 }
 
 class Emoticon extends React.Component {
+
+    newGame = () => {
+        <App/>
+    }
+
     render () {
         return (
-            <button className={ styles.btnEmoticon }></button>
+            <button className={ styles.btnEmoticon } onClick={ this.newGame }></button>
         )
     }
 }
@@ -99,7 +112,7 @@ class Clock extends React.Component {
 
     render () {
         return (
-            <span className={ styles.digital }>{this.state.seconds}</span>
+            <span className={ styles.digital }>{ this.state.seconds }</span>
         )
     }
 }
@@ -132,7 +145,7 @@ class TopBar extends React.Component {
     render() {
 
         return (
-            <div id='top_bar' className={styles.top_bar}>
+            <div id='top_bar' className={ styles.top_bar }>
               <TopBoarder/>
             </div>
         )
