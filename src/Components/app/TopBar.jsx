@@ -1,67 +1,49 @@
 import React from 'react';
 import styles from './App.scss';
 import {BoardStateEnum} from "minesweeper";
+import mineSrc from "./img/mine.jpeg";
+import flagSrc from "./img/flag.png";
+import mineExplodeSrc from "./img/mineExplode.png";
 
+// niebieski pasek
 class Logo extends React.Component {
     render () {
-        return <img src='./img/mine.jpeg'/>
+        return <img src={ mineSrc }/>
     }
 }
 
-function MainMenu (props) {
-        return props.visible && (
-            <ul>
-                <div onClick={props.menuClick}>
-                    Game
-                </div>
-            </ul>
-        )
-}
+// główne menu
+class MainMenu extends React.Component {
 
-function MenuItems({visible, hideClick}) {
-    const handleClick = () => {
-        hideClick()
-    };
-
-    return visible && (
-        <div className={'hidden'}>
-            <ul>
-                <li>New</li>
-                <li>Beginner</li>
-                <li>Intermediate</li>
-                <li>Expert</li>
-                <li>Custom...</li>
-            </ul>
-            <div onClick={handleClick}>Close</div>
-        </div>
-    )
-}
-
-class Menu extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
-            itemsVisible: false
-        }
+          clicked: false  
+        };
     }
 
-    onMainMenuClick = () => {
-        this.setState({ itemsVisible: true})
-    };
-
-    onHideClick = () => {
-        this.setState({ itemsVisible: false})
+     menuClick = () => {
+        this.setState({
+            clicked: !this.state.clicked
+        });
     };
 
     render () {
-        const { itemsVisible } = this.state;
-        return (
-            <menu>
-            <MainMenu menuClick={this.onMainMenuClick} visible={!itemsVisible}/>
-            <MenuItems hideClick={this.onHideClick} visible={itemsVisible}/>
-            </menu>
-        )
-    }
+
+        console.log(styles);
+
+        return <div className={ styles.menu }>
+                    { this.state.clicked && <ul className={styles.menuItem} >
+                        <li>New</li>
+                        <li>Beginner</li>
+                        <li>Intermediate</li>
+                        <li>Expert</li>
+                        <li>Custom...</li>
+                    </ul> }
+                    <div className={styles.gameBtn} onClick={this.menuClick} >Game</div>
+                    <div className={styles.help}>Help</div>
+                </div>;
+}        
 }
 
 class Header extends React.Component {
@@ -69,18 +51,16 @@ class Header extends React.Component {
         return (
             <header>
                 <Logo />
-                <span>Minesweeper</span>
-                <Menu/>
+                <h1>Minesweeper</h1>                
             </header>
         )
     }
 }
 
 class MinesCount extends React.Component {
-
     render () {
         return (
-            <span id='minesCount'>10</span>
+            <span className={ styles.digital }>10</span>
         )
     }
 }
@@ -88,13 +68,12 @@ class MinesCount extends React.Component {
 class Emoticon extends React.Component {
     render () {
         return (
-            <button id='btnEmoticon'><img src='./img/emoticons.png'></img></button>
+            <button className={ styles.btnEmoticon }></button>
         )
     }
 }
 
 class Clock extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -120,7 +99,7 @@ class Clock extends React.Component {
 
     render () {
         return (
-            <span id='clock'>{this.state.seconds}</span>
+            <span className={ styles.digital }>{this.state.seconds}</span>
         )
     }
 }
@@ -128,7 +107,7 @@ class Clock extends React.Component {
 class MainSection extends React.Component {
     render () {
         return (
-            <section>
+            <section className= { styles.back }>
                <MinesCount/>
                 <Emoticon/>
                 <Clock/>
@@ -142,6 +121,7 @@ class TopBoarder extends React.Component {
         return (
             <div>
                 <Header/>
+                <MainMenu/>
                 <MainSection/>
             </div>
         )
@@ -150,8 +130,9 @@ class TopBoarder extends React.Component {
 
 class TopBar extends React.Component {
     render() {
+
         return (
-            <div id='top_bar' style={styles}>
+            <div id='top_bar' className={styles.top_bar}>
               <TopBoarder/>
             </div>
         )

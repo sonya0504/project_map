@@ -1,102 +1,178 @@
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+@font-face {
+  font-family: 'digital-7regular' ;
+  src: local('digital-7regular'),url('./webfontkit-20181027-095832/digital-7-webfont.woff2') format('woff2'),
+       url('./webfontkit-20181027-095832/digital-7-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   width: 100vw;
 }
 
 .appContainer {
-  width: 36.2%;
+  width: 400px;
   margin: 0 auto;
   border: 1px solid red;
   background-color: lightgrey;
 }
 
 .top_bar {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1000px;
-  height: 70px;
   background-color: lightgrey;
   color: #fff;
+
 }
 
+// niebieski pasek
 header {
-  height: 30px;
-  border: 1px solid red;
   background-color: #000080;
   background-image: linear-gradient(to right, #000080, #A1CAF0);
-  border-top: 5px solid lightgrey;
-  border-left: 5px solid lightgrey;
-  border-right: 5px solid lightgrey;
   position: relative;
+  padding: 3px;
+  display: flex;
+  border: none;
 
   img {
-    position: absolute;
+    // position: absolute;
     height: 25px;
     width: 25px;
-    padding: 3px;
-    margin: 0;
   }
 
-  span {
-    position: absolute;
+  h1 {
+    margin-left: 5px;
     font-weight: 900;
     line-height: 25px;
+    font-size: 20px;
     letter-spacing: 1px;
     color: white;
-    padding: 3px;
-    margin: 0;
-    top: 0;
-    left: 30px;
+    display: inline-block
   }
+}
 
-  menu {
-    position: relative;
-    top: 20px;
-    left: 5px;
-    padding-left: 0;
+  //główne menu
+.gameBtn{
+  color: black;
+  display: inline-block;
+  height: 25px;
+  margin: 0;
+  padding: 3px;
+}
+
+.gameBtn::first-letter {
+    text-decoration: underline;
+}
+
+.gameBtn:hover {
+  background-color: #2367C5;
+  color: white;
+}
+
+.help {
+  display: inline-block;
+  color: black;
+  padding: 3px;
+}
+
+.help::first-letter {
+  text-decoration: underline;
+}
+
+.help:hover {
+  background-color: #2367C5;
+  color: white;
+}
+
+.menuItem {
+  position: absolute;
+  top: 65px;
+  display: block;
+  width: 110px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid grey;
+
+  li {
     list-style: none;
     background-color: lightgrey;
+    color: black;
+    width: 100px;
+    height: 25px;
+    margin: 0;
+    padding: 5px;
+  }
 
-    div {
-      position: absolute;
-      width: 40px;
-      padding-left: 0;
-      padding-right: 2px;
-      left: 5px;
-    }
-
-    div::first-letter {
-        text-decoration: underline;
-      }
-
-    div:hover {
-      background-color: #2367C5;
-      color: white;
-    }
+  li:hover {
+    background-color: #2367C5;
+    color: white;
   }
 }
 
+
+.back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+}
+
+// sekcja z wyświetlaczami
 section {
-  position: relative;
-  top: 15px;
-  padding: 20px;
+  width: 285px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
   margin: 0 auto;
+  margin-top: 35px; 
+  background-color: lightgrey;
+  border: 5px solid;
+  border-color: #7d7d7d #fff #fff #7d7d7d;
 }
 
-#minesCount {
-
+.digital {
+  background-color: black;
+  color: red;
+  line-height: 30px;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  font-family: 'digital-7regular';
+  font-size: 30px;
 }
 
-#btnEmoticon {
+.btnEmoticon {
+  width: 25px;
+  height: 25px;
+  background-image: url("./img/emoticons.png");
+  background-repeat: no-repeat;
+  background-size: 200%;
 
-}
+  .newGame {
+    background-position: 1px 0px;
+  }
 
-#clock {
+  .ups {
+    background-position: -22px 0px;
+  }
 
+  .lost {
+    background-position: -22px -20px;
+  }
+
+  .won {
+    background-position: 1px -20px;
+  }
 }
 
 .board {
+  // position: absolute;
+  top: 200px;
   display: flex;
   padding: 0;
   border: 5px solid;
@@ -108,7 +184,6 @@ section {
     border-color: #fff #7d7d7d #7d7d7d #fff;
   }
 }
-
 
 .row {
   display: flex;

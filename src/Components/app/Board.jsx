@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './App.scss';
 import {CellStateEnum, BoardStateEnum, CellFlagEnum} from "minesweeper";
+import { EWOULDBLOCK } from 'constants';
 
 const colorMap = {
     0: 'lightgrey',
@@ -21,10 +22,16 @@ const stateToClassName = {
     [BoardStateEnum.LOST]: styles.nonInteractive
 };
 
+const CELLFLAG_TO_STRING = {
+    [CellFlagEnum.NONE]: " ",
+    [CellFlagEnum.EXCLAMATION]: "!",
+    [CellFlagEnum.QUESTION]: "?"
+};
+
 class Cell extends React.Component {
 
     render() {
-        let {cell, onOpen, onFlag} = this.props;
+        let {cell, onOpen, onFlag, isLost} = this.props;
         let fontColor = {color: colorMap[cell.numAdjacentMines]};
 
         const className = [
@@ -32,13 +39,36 @@ class Cell extends React.Component {
             cell.state === CellStateEnum.OPEN ? styles.open : styles.closed
         ].join(" ");
 
-            return (
-                <div className={className} style={fontColor} onClick={() => onOpen(cell)}
-                     onContextMenu={(e) => {e.preventDefault(); onFlag(cell)}}>
-                    { cell.state === CellStateEnum.OPEN && (cell.isMine ? "*" : cell.numAdjacentMines)}
-                    { cell.state === CellStateEnum.CLOSED && this.props.isLost && cell.isMine && "*"}
+        const isOpen = cell.state === CellStateEnum.OPEN;
+
+        // if (cell.isMine && this.props.isLost) {
+        //     return <div className={className} style={ { backgroundColor: "red" }} >  * </div>;
+        // } 
+
+        const callbacks = { 
+            onClick: () => onOpen(cell), 
+            onContextMenu: (e) => {
+                e.preventDefault(); onFlag(cell)
+            }
+        }
+
+        if (isOpen) {
+            if (cell.isMine) {
+               return <div className={className} style={{ backgroundColor: "red" }}>*</div>
+            } else {
+                return <div className={className} style={ fontColor } { ...callbacks }>
+                    { cell.numAdjacentMines }
                 </div>
-            )
+            }
+        } else {
+            if (isLost && cell.isMine) {
+                return <div className={className}>*</div>;
+            } else {
+                return <div className={className} { ...callbacks }>
+                        { CELLFLAG_TO_STRING[cell.flag] }
+                    </div>
+            }
+        }        
     }
 }
 
@@ -57,6 +87,8 @@ class Board extends React.Component {
             grid: this.props.board.grid(),
             boardState: this.props.board.state()
         }
+
+        window.board = this.props.board;
     }
 
     onCellOpened({x, y}) {
@@ -71,6 +103,7 @@ class Board extends React.Component {
     }
 
     onCellFlagged({x, y}) {
+        console.log("Flage", {x, y});
         if (this.props.board.state() === BoardStateEnum.IN_PROGRESS || this.props.board.state() === BoardStateEnum.PRISTINE) {
             this.props.board.cycleCellFlag(x, y);
         }
@@ -87,7 +120,7 @@ class Board extends React.Component {
             stateToClassName[this.props.board.state()]
         ].join(" ");
 
-        return <div style={styles}>
+        return <div  className={ styles.back }>
             <div className={ className }>
                 {this.state.grid.map((cells, idx) => <Row isLost={ this.state.boardState === BoardStateEnum.LOST } key={`row_${idx}`} cells={cells}
                                                           onCellOpened={cell => this.onCellOpened(cell)}
