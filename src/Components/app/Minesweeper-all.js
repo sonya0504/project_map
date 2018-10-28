@@ -120,22 +120,3 @@ window.openCell = (x, y) => {
 };
 
 window.printBoard();
-/*
-basicBoard.cycleCellFlag(x,y);
-basicBoard.state();
-
-mediumBoard.openCell(x,y);
-mediumBoard.cycleCellFlag(x,y);
-mediumBoard.state();
-
-expertBoard.openCell(x,y);
-expertBoard.cycleCellFlag(x,y);
-expertBoard.state();
-*/
-
-
-// rodzaje BoardStateEnum:
-// BoardStateEnum.PRISTINE // wszystkie komówrki przed kliknięciem
-// BoardStateEnum.IN_PROGRESS //komórki, które zostały kliknięte ale nie są w stanie wygranej i przegranej
-// BoardStateEnum.LOST // mina
-// BoardStateEnum.WON // wygrana

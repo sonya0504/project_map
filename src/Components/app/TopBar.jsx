@@ -4,7 +4,7 @@ import mineSrc from "./img/mine.jpeg";
 import flagSrc from "./img/flag.png";
 import mineExplodeSrc from "./img/mineExplode.png";
 import App from "./App";
-import {CellStateEnum, BoardStateEnum, CellFlagEnum, /*cell.isMine*/} from "minesweeper";
+import { CellStateEnum, BoardStateEnum, CellFlagEnum }  from "minesweeper";
 
 // niebieski pasek
 class Logo extends React.Component {
@@ -19,24 +19,15 @@ class MainMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          clicked: false  
+          clicked: false
         };
     }
 
-    //  menuClick = () => {
-    //     this.setState({
-    //         clicked: !this.state.clicked
-    //     });
-    // };
-
-    // showMines = () => {
-    //     if (cell.isMine) {
-    //             return (
-    //             <div className={ className }><img src={ mineSrc }/></div>
-    //             )
-    //         }
-    //     }
-    
+    menuClick = () => {
+        this.setState({
+            clicked: !this.state.clicked
+        });
+    };
 
     render () {
 
@@ -49,7 +40,7 @@ class MainMenu extends React.Component {
                         <li>Custom...</li>
                     </ul> }
                     <div className={ styles.gameBtn } onClick={ this.menuClick } >Game</div>
-                    <div className={ styles.help } onClick={ this.showMines }>Help</div>
+                    <div onClick={ () => this.props.onShowHelp() } className={ styles.help }>Help</div>
                 </div>;
 }        
 }
@@ -75,13 +66,21 @@ class MinesCount extends React.Component {
 
 class Emoticon extends React.Component {
 
-    newGame = () => {
-        <App/>
-    }
-
     render () {
+
+        // const classNameMap = {
+        //     lost: styles.lost,
+        //     won: styles.won,
+        //     clicked: styles.ups
+        // }          
+
+        // const className = [
+        //     styles.btnEmoticon,
+        //     classNameMap
+        // ].join(" ");
+
         return (
-            <button className={ styles.btnEmoticon } onClick={ this.newGame }></button>
+            <button className={ styles.btnEmoticon } onClick={ () => this.props.onNewGame() }></button>
         )
     }
 }
@@ -122,7 +121,7 @@ class MainSection extends React.Component {
         return (
             <section className= { styles.back }>
                <MinesCount/>
-                <Emoticon/>
+                <Emoticon onNewGame= { this.props.onNewGame }/>
                 <Clock/>
             </section>
         )
@@ -132,10 +131,10 @@ class MainSection extends React.Component {
 class TopBoarder extends React.Component {
     render () {
         return (
-            <div>
+            <div className = { styles.menu }>
                 <Header/>
-                <MainMenu/>
-                <MainSection/>
+                <MainMenu onShowHelp={ this.props.onShowHelp } />
+                <MainSection onNewGame={ this.props.onNewGame }/>
             </div>
         )
     }
@@ -146,7 +145,7 @@ class TopBar extends React.Component {
 
         return (
             <div id='top_bar' className={ styles.top_bar }>
-              <TopBoarder/>
+              <TopBoarder onShowHelp={ this.props.onShowHelp } onNewGame={ this.props.onNewGame }/>
             </div>
         )
     }

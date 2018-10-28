@@ -1,17 +1,17 @@
 $cellSize: 32px;
 
-* {
-  margin: 0;
-  padding: 0;
-  user-select: none;
-}
-
 @font-face {
   font-family: 'digital-7regular' ;
   src: local('digital-7regular'), url('./webfontkit-20181027-095832/digital-7-webfont.woff2') format('woff2'),
        url('./webfontkit-20181027-095832/digital-7-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
 }
 
 body {
@@ -22,14 +22,13 @@ body {
 .appContainer {
   width: 400px;
   margin: 0 auto;
-  border: 1px solid red;
+  border: 1px solid grey;
   background-color: lightgrey;
 }
 
 .top_bar {
   background-color: lightgrey;
   color: #fff;
-  // margin-bottom: 10px solid white;
 }
 
 // niebieski pasek
@@ -62,7 +61,6 @@ header {
   color: black;
   display: inline-block;
   height: 25px;
-  margin-bottom: 10px solid white;
   padding: 3px;
 }
 
@@ -91,7 +89,8 @@ header {
 }
 
 .menu {
-  margin-bottom: 10px solid white;
+  // border-right: 5px solid white;
+  // border-left: 5px solid white;
 }
 
 .menuItem {
@@ -125,10 +124,14 @@ header {
   justify-content: space-around;
   align-items: center;
   background-color: lightgrey;
+  // border-bottom: 5px solid white;
+  // border-right: 5px solid white;
+  // border-left: 5px solid white;
 }
 
 // sekcja z wyświetlaczami
 section {
+  top: 50px;
   width: 285px;
   display: flex;
   justify-content: space-around;
@@ -142,13 +145,13 @@ section {
 .digital {
   background-color: black;
   color: red;
-  width: 40px;
+  width: 45px;
   height: 36px;
   text-align: center;
   font-family: 'digital-7regular';
   font-size: 30px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center
 }
 
@@ -201,6 +204,7 @@ img {
     width: $cellSize;
     height: $cellSize;
   }
+
 .cell {
   width: $cellSize;
   height: $cellSize;

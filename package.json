@@ -1,7 +1,7 @@
 {
-  "name": "project_map",
+  "name": "project_saper  ",
   "version": "0.0.1",
-  "description": "Projekt adres: https://sonya0504.github.io/project_map/",
+  "description": "Projekt adres: https://sonya0504.github.io/project_saper/",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sonya0504/project_map.git"
+    "url": "git+https://sonya0504.github.io/project_saper.git"
   },
   "author": "Sonia Jarczak <jarczak.sonia@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sonya0504/project_map/issues"
+    "url": "https://sonya0504.github.io/project_saper/issues"
   },
-  "homepage": "https://github.com/sonya0504/project_map#readme",
+  "homepage": "https://sonya0504.github.io/project_saper#readme",
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",

@@ -34,7 +34,7 @@ const CELLFLAG_TO_STRING = {
 class Cell extends React.Component {
 
     render() {
-        let { cell, onOpen, onFlag, isLost } = this.props;
+        let { cell, onOpen, onFlag, isLost, showHelp } = this.props;
         let fontColor = {color: colorMap[cell.numAdjacentMines]};
 
         const className = [
@@ -45,10 +45,21 @@ class Cell extends React.Component {
         const isOpen = cell.state === CellStateEnum.OPEN;
 
         const callbacks = { 
-            onClick: () => onOpen(cell), 
+            onClick: () => !showHelp && onOpen(cell), 
             onContextMenu: (e) => {
+                if (showHelp) {
+                    return;
+                }
                 e.preventDefault(); 
                 onFlag(cell); 
+            }
+        }
+
+//console.log({ x: cell.x, y: cell.y, showHelp, isOpen, isLost});
+
+        if (showHelp) {
+            if (cell.isMine) {
+               return <div className={ className }><img src={ mineSrc } /></div>
             }
         }
 
@@ -72,11 +83,12 @@ class Cell extends React.Component {
     }
 }
 
-const Row = ({ cells, onCellOpened, isLost, onCellFlagged }) => (
+const Row = ({ cells, onCellOpened, isLost, onCellFlagged, showHelp }) => (
 
     <div className={ styles.row }>
         { cells.map(cell =>
-            <Cell isLost={ isLost } key={`cell_${cell.x}_${cell.y}`} cell={cell} onOpen={onCellOpened} onFlag={onCellFlagged}/>) }
+            <Cell isLost={ isLost } key={`cell_${cell.x}_${cell.y}`} cell={ cell } onOpen={ onCellOpened } onFlag={ onCellFlagged }
+            showHelp={showHelp}/>) }
     </div>
 );
 
@@ -87,8 +99,13 @@ class Board extends React.Component {
             grid: this.props.board.grid(),
             boardState: this.props.board.state()
         }
+    }
 
-        window.board = this.props.board;
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            grid: newProps.board.grid(),
+            boardState: newProps.board.state()
+        });
     }
 
     onCellOpened( {x, y} ) {
@@ -117,7 +134,7 @@ class Board extends React.Component {
     render() {
         const className = [
             styles.board,
-            stateToClassName[this.props.board.state()]
+            // stateToClassName[this.props.board.state()]
         ].join(" ");
 
         return <div  className={ styles.back }>
@@ -125,6 +142,8 @@ class Board extends React.Component {
                 {this.state.grid.map((cells, idx) => <Row isLost={ this.state.boardState === BoardStateEnum.LOST } key={`row_${idx}`} cells={cells}
                                                           onCellOpened={cell => this.onCellOpened(cell)}
                                                           onCellFlagged={cell => this.onCellFlagged(cell)}
+                                                          showHelp={this.props.showHelp}
+                                                          newGame={this.props.newGame}
                 />)}
             </div>
         </div>
