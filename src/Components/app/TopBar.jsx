@@ -33,10 +33,10 @@ class MainMenu extends React.Component {
 
         return <div className={ styles.menu }>
                     { this.state.clicked && <ul className={styles.menuItem} >
-                        <li>New</li>
-                        <li>Beginner</li>
-                        <li>Intermediate</li>
-                        <li>Expert</li>
+                        <li onClick={ () => this.props.onNewGame() }>New</li>
+                        <li onClick={ () => this.props.onNewGame() }>Beginner</li>
+                        <li onClick={ () => this.props.onNewGameMedium() }>Intermediate</li>
+                        <li onClick={ () => this.props.onNewGameExpert() }>Expert</li>
                         <li>Custom...</li>
                     </ul> }
                     <div className={ styles.gameBtn } onClick={ this.menuClick } >Game</div>
@@ -133,7 +133,9 @@ class TopBoarder extends React.Component {
         return (
             <div className = { styles.menu }>
                 <Header/>
-                <MainMenu onShowHelp={ this.props.onShowHelp } />
+                <MainMenu onShowHelp={ this.props.onShowHelp } onNewGame={ this.props.onNewGame }
+                          onNewGameMedium={ this.props.onNewGameMedium }
+                          onNewGameExpert={ this.props.onNewGameExpert } />
                 <MainSection onNewGame={ this.props.onNewGame }/>
             </div>
         )
@@ -145,7 +147,9 @@ class TopBar extends React.Component {
 
         return (
             <div id='top_bar' className={ styles.top_bar }>
-              <TopBoarder onShowHelp={ this.props.onShowHelp } onNewGame={ this.props.onNewGame }/>
+              <TopBoarder onShowHelp={ this.props.onShowHelp } onNewGame={ this.props.onNewGame } 
+                          onNewGameMedium={ this.props.onNewGameMedium } 
+                          onNewGameExpert={ this.props.onNewGameExpert }/>
             </div>
         )
     }

@@ -80,34 +80,34 @@ const getCellString = function (content) {
 };
 
 
-const basic = minesweeper.generateMineArray({
-    rows: 8,
-    cols: 8,
-    mines: 10
-});
+// const basic = minesweeper.generateMineArray({
+//     rows: 8,
+//     cols: 8,
+//     mines: 10
+// });
 
-const basicBoard = new Board(basic);
-const basicLevel = printBoard(basicBoard);
+// const basicBoard = new Board(basic);
+// const basicLevel = printBoard(basicBoard);
 
-const medium = minesweeper.generateMineArray({
-    rows: 16,
-    cols: 16,
-    mines: 40
-});
+// const medium = minesweeper.generateMineArray({
+//     rows: 16,
+//     cols: 16,
+//     mines: 40
+// });
 
-const mediumBoard = new Board(medium);
-const mediumLevel = printBoard(mediumBoard);
+// const mediumBoard = new Board(medium);
+// const mediumLevel = printBoard(mediumBoard);
 
-const expert = minesweeper.generateMineArray({
-    rows: 30,
-    cols: 16,
-    mines: 99
-});
+// const expert = minesweeper.generateMineArray({
+//     rows: 30,
+//     cols: 16,
+//     mines: 99
+// });
 
-const expertBoard = new Board(expert);
-const expertLevel = printBoard(expertBoard);
+// const expertBoard = new Board(expert);
+// const expertLevel = printBoard(expertBoard);
 
-export default basicLevel; mediumLevel; expertLevel;
+// export default basicLevel; mediumLevel; expertLevel;
 
 window.printBoard = () => {
     const mainBoard = document.getElementById('game');

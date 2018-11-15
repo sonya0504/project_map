@@ -11,6 +11,18 @@ const mineArray = minesweeper.generateMineArray({
     mines: 10
 });
 
+const mineArrayMedium = minesweeper.generateMineArray({
+    rows: 16,
+    cols: 16,
+    mines: 40
+});
+
+const mineArrayExpert = minesweeper.generateMineArray({
+    rows: 30,
+    cols: 16,
+    mines: 99
+});
+
 class App extends React.Component {
     constructor (props) {
         super (props);
@@ -36,14 +48,33 @@ class App extends React.Component {
         clearTimeout(this.helpTimeout);
         this.setState({
             board: new minesweeper.Board(config),
-            showingHelp: false
+            showingHelp: false,
+            clicked: !this.state.clicked
+        });
+    }
+
+    newGameMedium = ( config = mineArrayMedium) => {
+        clearTimeout(this.helpTimeout);
+        this.setState({
+            board: new minesweeper.Board(config),
+            showingHelp: false,
+            clicked: !this.state.clicked
+        });
+    }
+
+    newGameExpert = (config = mineArrayExpert) => {
+        clearTimeout(this.helpTimeout);
+        this.setState({
+            board: new minesweeper.Board(config),
+            showingHelp: false,
+            clicked: !this.state.clicked
         });
     }
 
     render () {
          return (
             <div className={ styles.appContainer } >
-            <TopBar onShowHelp={ this.showHelp } onNewGame={ this.newGame }/>
+            <TopBar onShowHelp={ this.showHelp } onNewGame={ this.newGame } onNewGameMedium={ this.newGameMedium } onNewGameExpert={ this.newGameExpert}/>
             { this.state.board && <Board board={ this.state.board } showHelp={ this.state.showingHelp}/>}
         </div>
         )
