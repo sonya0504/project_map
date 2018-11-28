@@ -129,6 +129,11 @@ class MainSection extends React.Component {
 }
 
 class TopBoarder extends React.Component {
+    // let boardSizeToClassName = {
+    //     [newGame]: styles.newGame,
+    //     [intermediate]: styles.intermediate,
+    //     [expert]: styles.expert
+    // };
     render () {
         return (
             <div className = { styles.menu }>
